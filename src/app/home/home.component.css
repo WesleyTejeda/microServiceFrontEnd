@@ -1,0 +1,14 @@
+#carousel {
+    position: fixed;
+    width: 100vw;
+    z-index: -1;
+}
+
+main {
+    margin-top: 10vh;
+}
+
+#how {
+    position: relative;
+    top: 50vh;
+}

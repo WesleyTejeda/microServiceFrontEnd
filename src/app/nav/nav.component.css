@@ -6,3 +6,15 @@
 .company {
     color: rgb(94, 183, 206);
 }
+
+nav {
+    position: fixed;
+    width: 100vw;
+    height: 10vh;
+    top: 0;
+    z-index: 500;
+}
+
+.bgWhite {
+    background-color: white;
+}

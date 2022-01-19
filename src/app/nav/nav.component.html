@@ -1,43 +1,39 @@
-<!-- 
-    <ul id="dropdown1" class="dropdown-content">
-    <li><a href="#!">one</a></li>
-    <li><a href="#!">two</a></li>
-    <li class="divider"></li>
-    <li><a href="#!">three</a></li>
-  </ul>
-<nav>
-    <div class="nav-wrapper">
-      <a href="/" class=""><img class="logo" src="../../assets/logo-1.png" /><span class="company">Secure Financial</span></a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        Dropdown Trigger
-        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
-      </ul>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/"><img class="logo" src="../../assets/logo-1.png" /><span class="company">Secure Financial</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Invest</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Mutual Funds</a>
+          </li>
+        </ul>
+        <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              My Account
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="/profile">Profile</a></li>
+              <li><a class="dropdown-item" href="#">Settings</a></li>
+              <li><a class="dropdown-item" href="#">Wallet</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">My Portfolio</a></li>
+            </ul>
+        </div>
+        <form class="d-flex">
+          <input class="form-control me-2" type="text" placeholder="Username">
+          <input class="form-control me-2" type="password" placeholder="Password">
+          <button class="btn btn-outline-success btn-light" type="submit">Login</button>
+        </form>
+        <button class="btn btn-outline-danger btn-light">Sign Up</button>
+      </div>
     </div>
-</nav> 
--->
-<nav class="uk-navbar">
-    <!-- <div class="uk-grid">
-        <div class="uk-width-1-2">
-
-        </div>
-        <div class="uk-width-1-2">
-            <div class="uk-grid">
-                <div class="uk-width-1-2">
-
-                </div>
-                <div class="uk-width-1-2">
-
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <ul class="uk-navbar-nav">
-        <li class="uk-active"><a href=""><img class="logo" src="../../assets/logo-1.png" /><span class="company">Secure Financial</span></a></li>
-        <li><a href="/profile">Profile</a></li>
-        <li class="uk-parent"><a href="">Invest</a></li>
-        <li class="uk-parent"><a href="">Mutual Funds</a></li>
-    </ul>
-    
-</nav>
+  </nav>
