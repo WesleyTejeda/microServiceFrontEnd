@@ -5,7 +5,7 @@
             <div class="card-body">
                 <h5 class="card-title">Sample Headline</h5>
                 <p class="card-text">Username <span></span></p>
-                <p class="card-text">Name <span></span></p> 
+                <p class="card-text">Name <span>{{ profile.name }}</span></p> 
                 <form class="row g-3">
                     <div class="col-md-6">
                       <label for="inputEmail4" class="form-label">Email</label>
@@ -45,14 +45,14 @@
                   </form>
             </div>
         </div>
-        <div class="col">
+        <div class="col-1">
     
         </div>
         <div id="how" class="card col-5 p-0 orange text-light">
             <h5 class="card-header darker text-light">Wallet</h5>
             <div class="card-body">
                 <h5 class="card-title">Current Information</h5>
-                <h3 class="card-text">Balance: <span style="color:rgb(71, 238, 71)">$ 1234.56</span></h3>
+                <h3 class="card-text">Balance: <span style="color:rgb(71, 238, 71)">$ {{ profile.Wallet.currencyAmount.toFixed(2) }}</span></h3>
                 <h4 class="card-text">Currency: <span>USD</span></h4>
                 <h4 class="card-text">Primary Payment Option</h4>
                 <form class="row g-3">
@@ -66,7 +66,7 @@
                     </div>
                     <div class="col-12">
                       <label for="inputAddress" class="form-label">Card Number</label>
-                      <input type="text" class="form-control" id="inputAddress" placeholder="**** ***** **** 1234">
+                      <input type="text" class="form-control" id="inputCardNumber" placeholder="**** ***** **** 1234">
                     </div>
                     <div class="col-md-6">
                         <label for="inputExpiration" class="form-label">Expiration Date</label>
@@ -93,51 +93,21 @@
             <div class="card-body row g-3 w-100">
                 <h5 class="card-title">Approved Transactions</h5>
                 <div class="row w-100 p-0 m-0 justify-content-center">
-                    <div class="card col-3 p-0 orange text-light m-2 d-flex">
-                        <h5 class="card-header">Date <span class="floatRight">01 / 19 / 2022</span></h5>
-                        <p class="card-text">Type <span class="floatRight">Purchase</span></p>
-                        <p class="card-text">Fund <span class="floatRight">Sample Fund</span></p>
-                        <p class="card-text">Quantity <span class="floatRight">3</span></p>
-                        <p class="card-text">Price Per: <span class="floatRight" style="color:rgb(71, 238, 71)">$ 120.00</span></p>
-                        <p class="card-text">Total <span class="floatRight" style="color:rgb(71, 238, 71)">$ 120.00</span></p>
+                  <div class="card col-3-lg col-md-3 col-sm-10 p-0 orange text-light m-2 d-flex"  *ngFor="let transaction of profile.Transactions">
+                    <div class="container" *ngIf="transaction.type !== 'deposit'">
+                        <h5 class="card-header">Date <span class="floatRight">{{ transaction.createdAt.slice(0,10) }}</span></h5>
+                        <p class="card-text">Type <span class="floatRight">{{ transaction.type }}</span></p>
+                        <p class="card-text">Fund <span class="floatRight">{{ transaction.itemDescription }}</span></p>
+                        <p class="card-text">Quantity <span class="floatRight">{{ transaction.quantity }}</span></p>
+                        <p class="card-text">Price Per: <span class="floatRight" type="number" style="color:rgb(182, 41, 36)">$ {{ transaction.pricePerUnit.toFixed(2).toLocaleString() }}</span></p>
+                        <p class="card-text">Total <span class="floatRight" style="color:rgb(182, 41, 36)">$ {{ transaction.amount.toFixed(2) }}</span></p>
                     </div>
-                    <div class="card col-3 p-0 orange text-light m-2">
-                        <h5 class="card-header">Date <span class="floatRight">01 / 19 / 2022</span></h5>
-                        <p class="card-text">Type <span class="floatRight">Purchase</span></p>
-                        <p class="card-text">Fund <span class="floatRight">Sample Fund</span></p>
-                        <p class="card-text">Quantity <span class="floatRight">3</span></p>
-                        <p class="card-text">Price Per: <span class="floatRight" style="color:rgb(71, 238, 71)">$ 120.00</span></p>
-                        <p class="card-text">Total <span class="floatRight" style="color:rgb(71, 238, 71)">$ 120.00</span></p>
+                    <div class="container" *ngIf="transaction.type === 'deposit'">
+                        <h5 class="card-header">Date <span class="floatRight">{{ transaction.createdAt.slice(0,10) }}</span></h5>
+                        <p class="card-text">Type <span class="floatRight">{{ transaction.type }}</span></p>
+                        <p class="card-text">Amount <span class="floatRight" style="color:rgb(71, 238, 71)">$ {{ transaction.amount.toFixed(2) }}</span></p>
                     </div>
-                    <div class="card col-3 p-0 orange text-light m-2">
-                        <h5 class="card-header">Date <span class="floatRight">01 / 19 / 2022</span></h5>
-                        <p class="card-text">Type <span class="floatRight">Purchase</span></p>
-                        <p class="card-text">Fund <span class="floatRight">Sample Fund</span></p>
-                        <p class="card-text">Quantity <span class="floatRight">3</span></p>
-                        <p class="card-text">Price Per: <span class="floatRight" style="color:rgb(71, 238, 71)">$ 120.00</span></p>
-                        <p class="card-text">Total <span class="floatRight" style="color:rgb(71, 238, 71)">$ 120.00</span></p>
-                    </div>
-                    <div class="card col-3 p-0 orange text-light m-2">
-                        <h5 class="card-header">Date <span class="floatRight">01 / 19 / 2022</span></h5>
-                        <p class="card-text">Type <span class="floatRight">Purchase</span></p>
-                        <p class="card-text">Fund <span class="floatRight">Sample Fund</span></p>
-                        <p class="card-text">Quantity <span class="floatRight">3</span></p>
-                        <p class="card-text">Price Per: <span class="floatRight" style="color:rgb(71, 238, 71)">$ 120.00</span></p>
-                        <p class="card-text">Total <span class="floatRight" style="color:rgb(71, 238, 71)">$ 120.00</span></p>
-                    </div>
-                    <div class="card col-3 p-0 orange text-light m-2">
-                        <h5 class="card-header">Date <span class="floatRight">01 / 19 / 2022</span></h5>
-                        <p class="card-text">Type <span class="floatRight">Purchase</span></p>
-                        <p class="card-text">Fund <span class="floatRight">Sample Fund</span></p>
-                        <p class="card-text">Quantity <span class="floatRight">3</span></p>
-                        <p class="card-text">Price Per: <span class="floatRight" style="color:rgb(71, 238, 71)">$ 120.00</span></p>
-                        <p class="card-text">Total <span class="floatRight" style="color:rgb(71, 238, 71)">$ 120.00</span></p>
-                    </div>
-                    <div class="card col-3 p-0 orange text-light m-2">
-                        <h5 class="card-header">Date <span class="floatRight">01 / 19 / 2022</span></h5>
-                        <p class="card-text">Type <span class="floatRight">Deposit</span></p>
-                        <p class="card-text">Amount <span class="floatRight" style="color:rgb(71, 238, 71)">$ 2000.00</span></p>
-                    </div>
+                  </div>
                 </div>
             </div>
         </div>
