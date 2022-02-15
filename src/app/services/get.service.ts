@@ -15,7 +15,8 @@ export class GetService {
     return this.httpClient.get(`${this.transactionUrl}/customers/${id}`);
   }
 
-  // getTransactionUsername():Observable<any>{
-  //   return this.httpClient.get(`${this.transactionUrl}/`)
-  // }
+  getFunds(): Observable<any> {
+    return this.httpClient.get("https://protected-dusk-89362.herokuapp.com/mutual-funds");
+  }
+
 }

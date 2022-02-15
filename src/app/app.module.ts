@@ -9,10 +9,16 @@ import { ProfileHubComponent } from './profile-hub/profile-hub.component';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { FundsComponent } from './funds/funds.component';
+import { PortfolioComponent } from './portfolio/portfolio.component';
+import { BillingComponent } from './billing/billing.component';
 
 const routes: Routes =[
   {path: "", component: HomeComponent},
-  {path: "profile", component: ProfileHubComponent}
+  {path: "profile", component: ProfileHubComponent},
+  {path: "billing", component: BillingComponent},
+  {path: "funds", component: FundsComponent},
+  {path: "portfolio", component: PortfolioComponent}
 ]
 
 @NgModule({
@@ -20,7 +26,10 @@ const routes: Routes =[
     AppComponent,
     NavComponent,
     ProfileHubComponent,
-    HomeComponent
+    HomeComponent,
+    FundsComponent,
+    PortfolioComponent,
+    BillingComponent
   ],
   imports: [
     BrowserModule,
