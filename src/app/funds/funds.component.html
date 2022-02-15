@@ -1,0 +1,23 @@
+<main class="container">
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Ticker</th>
+                <th>Asset Class</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let fund of funds">
+            <tr>
+                <td>{{fund.id}}</td>
+                <td>{{fund.name}}</td>
+                <td>{{fund.ticker}}</td>
+                <td>{{fund.assetClass}}</td>
+                <td>{{fund.price}}</td>
+            </tr>
+        </tbody>
+    </table>
+</main>
