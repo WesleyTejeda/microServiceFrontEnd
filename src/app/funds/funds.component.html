@@ -60,6 +60,7 @@
           <p>Price Per Share: <span style="color: rgb(24, 185, 24);">{{selectedFund.price}}</span></p>
           <p>Total: $ {{total}}</p>
           <p style="color: green;"> {{confirmationMessage}}</p>
+          <p style="color: red;"> {{errorMessage}}</p>
           <input [(ngModel)]="amountToBuy" name="quantity" placeholder="0" type="number" (change)="updateTotal(selectedFund)"/>
         </div>
         <div class="modal-footer">
