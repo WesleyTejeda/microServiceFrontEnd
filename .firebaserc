@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "secure-financial"
+  },
+  "targets": {
+    "secure-financial": {
+      "hosting": {
+        "microServiceFrontend": [
+          "financial-66fc8"
+        ]
+      }
+    }
+  }
+}
