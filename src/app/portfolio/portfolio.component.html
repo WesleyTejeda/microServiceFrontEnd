@@ -1,1 +1,55 @@
-<p>portfolio works!</p>
+<main class="container pt-4 text-center">
+    <h5>Current Porfolio</h5>
+    <table>
+        <thead>
+            <th>Fund</th>
+            <th>Ticker</th>
+            <th>Asset Class</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th>Sell</th>
+        </thead>
+        <tbody *ngFor="let fund of profile.ClientPortfolios">
+            <tr>
+                <td>{{ fund.fundData.name }}</td>
+                <td>{{ fund.fundData.ticker }}</td>
+                <td>{{ fund.fundData.assetClass }}</td>
+                <td>{{ fund.fundData.price }}</td>
+                <td>{{ fund.quantity }}</td>
+                <td>{{ (+fund.fundData.price.slice(1) * fund.quantity).toLocaleString("en-US") }}</td>
+                <td><button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="selectFund(fund.fundData); available(fund.quantity)">
+                    <i class="fa-solid fa-money-check-dollar"></i>
+                  </button></td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+
+    <h5 *ngIf="profile.ClientPortfolios.length === 0">No funds in portfolio</h5>
+
+
+    <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Sale</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Fund: {{ selectedFund.name }}</p>
+          <p>Price Per Share: <span style="color: rgb(24, 185, 24);">{{selectedFund.price}}</span></p>
+          <p>Quantity Available: {{ quantityAvailable }}</p>
+          <p>Total: $ {{total.toLocaleString("en-US")}}</p>
+          Quantity To Sell: <input [(ngModel)]="amountToSell" min=0 max={{quantityAvailable}} name="quantity" placeholder="0" type="number" (change)="updateTotal(selectedFund)"/>
+          <p style="color: green;"> {{confirmationMessage}}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-info" (click)="sellFund()">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,25 @@
+main {
+    margin: auto;
+    margin-top: 10vh;
+}
+
+table, tr, td, th {
+    border: 2px solid black;
+}
+
+th {
+    text-align: center;
+    background-color: rgb(94, 183, 206);
+    color: white;
+    text-shadow: 2px 2px black;
+}
+
+tbody:nth-child(even){
+    background-color: rgba(128, 128, 128, 0.198);
+}
+
+tr:hover {
+    background-color: rgb(94, 183, 206);
+    color: white;
+    text-shadow: 2px 2px black;
+}

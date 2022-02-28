@@ -16,7 +16,7 @@ nav {
     width: 100vw;
     height: 10vh;
     top: 0;
-    z-index: 500;
+    z-index: 2000;
 }
 
 .bgWhite {

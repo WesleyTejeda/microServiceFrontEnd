@@ -7,3 +7,14 @@ main {
 main {
     max-width: none;
 }
+
+#loader {
+    position: absolute;
+    top: 50vh;
+    left: 50vw;
+}
+
+.spinner {
+    width: 100px;
+    height: 100px;
+}

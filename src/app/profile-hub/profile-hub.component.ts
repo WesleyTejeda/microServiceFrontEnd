@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GetService } from '../services/get.service';
+import { PostService } from '../services/post.service';
 
 @Component({
   selector: 'app-profile-hub',
@@ -7,31 +8,26 @@ import { GetService } from '../services/get.service';
   styleUrls: ['./profile-hub.component.css']
 })
 export class ProfileHubComponent implements OnInit {
-  profile = {
-    username: "",
-    name: "",
-    Transactions: [
-      {
-        type: "",
-        amount: 0,
-        pricePerUnit: 0,
-        quantity: 0,
-        itemDescription: "",
-        createdAt: ""
-      }
-    ],
-    Wallet: {
-      currencyAmount: 0
-    }
-  }
-  constructor(private getService: GetService) { }
+  profile:any = {};
+  loaded:boolean = false;
+  constructor(private getService: GetService, private postService: PostService) { }
 
   ngOnInit(): void {
-    this.getService.getTransactionProfile(1).subscribe(data => {
+    let customerID = localStorage.getItem("customerID") || "";
+    let sessionID = localStorage.getItem("sessionID");
+    let username = localStorage.getItem("username");
+    if(!customerID || !sessionID || !username){
+      localStorage.removeItem("username");
+      localStorage.removeItem("sessionID");
+      localStorage.removeItem("customerID");
+      window.location.replace("/");
+    }
+    this.postService.getUserData(customerID, {sessionID, customerID, username}).subscribe((data:any) => {
       if(data){
         this.profile = data;
+        console.log(this.profile);
+        this.loaded = true;
       }
-      console.log(this.profile);
     })
   }
 

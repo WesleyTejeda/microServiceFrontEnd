@@ -1,34 +1,42 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ObserversModule } from '@angular/cdk/observers';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
-  userURL = "";
-  transactionURL = "https://transaction-microservice-v1.herokuapp.com";
+  masterBackendUrl = "https://protected-dusk-89362.herokuapp.com";
+  transactionUrl = "https://transaction-microservice-v1.herokuapp.com";
+  key = "?secretKey=pmY6WrA2oO7Vfdd4zpfz97C9aWMLELqv"
   constructor(private httpClient: HttpClient) { }
 
-  //USER Posts
   logUserIn(input: object):Observable<any> {
-    return this.httpClient.post(`${this.userURL}`, input);
+    return this.httpClient.post(`${this.masterBackendUrl}/login${this.key}`, input);
   }
 
   signUpUser(input: object):Observable<any> {
-    return this.httpClient.post(`${this.userURL}`, input);
+    return this.httpClient.post(`${this.masterBackendUrl}/signup`, input);
   }
 
-  //Transaction Posts
-  initializeCustomer(input: object):Observable<any> {
-    return this.httpClient.post(`${this.transactionURL}/customers/create`, input);
+  authenticate(input: object):Observable<any>{
+    return this.httpClient.post(`${this.masterBackendUrl}/auth${this.key}`, input);
   }
 
-  initializeWallet(input: object):Observable<any> {
-    return this.httpClient.post(`${this.transactionURL}/wallets/create`, input);
+  getUserData(id:string, input:object){
+    return this.httpClient.post(`${this.masterBackendUrl}/users/${id}`,input);
   }
 
-  createTransaction(input: object):Observable<any> {
-    return this.httpClient.post(`${this.transactionURL}/transactions/create`, input);
+  depositFunds(input:object){
+    return this.httpClient.post(`${this.masterBackendUrl}/transactions/deposit`,input)
+  }
+
+  buyFund(input:object){
+    return this.httpClient.post(`${this.masterBackendUrl}/purchase-fund`,input);
+  }
+
+  sellFund(input:object){
+    return this.httpClient.post(`${this.masterBackendUrl}/transactions/sell`, input)
   }
 }

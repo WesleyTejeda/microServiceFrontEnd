@@ -12,6 +12,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { FundsComponent } from './funds/funds.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { BillingComponent } from './billing/billing.component';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes =[
   {path: "", component: HomeComponent},
@@ -34,7 +35,8 @@ const routes: Routes =[
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

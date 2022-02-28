@@ -1,1 +1,50 @@
-<p>billing works!</p>
+<main class="container row pt-3">
+    <div class="col-6">
+        <div class="card border-info mb-3" style="height: 265px; width: 30vw">
+            <div class="card-header" style="background-color: rgb(0, 139, 86); color: white">Billing <i class="fa-solid fa-wallet"></i></div>
+            <div class="card-body">
+              <h5 class="card-title">Your Current Balance</h5>
+              <h4 class="card-text">Available: <span style="color: rgb(38, 194, 38);">$ {{(profile.transactions.Wallet.currencyAmount).toLocaleString("en-US")}}</span></h4>
+              <h4 class="card-text">Currency: <span style="color:rgb(71, 238, 71)">{{profile.transactions.Wallet.currencyType}}</span></h4>
+              <h4 class="card-text">Last Transaction Date: <br>{{dateFix(profile.transactions.updatedAt)}}</h4>
+            </div>
+        </div>    
+    </div>
+    <div class="col-6">
+        <div class="card border-info mb-3" style="height: 265px; width: 35vw">
+            <div class="card-header" style="background-color: rgb(0, 153, 255); color: white">Deposit <i class="fa-solid fa-coins"></i></div>
+            <div class="card-body">
+              <h5 class="card-title">Make a deposit here.</h5>
+              <label for="deposit" class="form-label">Deposit Amount</label><br>
+              $ <input type="number" [(ngModel)]="depositAmount" name="deposit" />
+              <button class="btn-primary btn" style="line-height: normal; border-radius: 0px;" (click)="deposit()">Deposit</button>
+            </div>
+        </div>    
+    </div>
+    <div class="col-12">
+        <div class="card mb-3">
+            <table style="text-align: center;">
+                <thead>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Details</th>
+                    <th>Quantity</th>
+                    <th>Price Per</th>
+                    <th>Total</th>
+                    <th>Available</th>
+                </thead>
+                <tbody *ngFor="let transaction of profile.transactions.Transactions">
+                    <tr>
+                        <td>{{ dateFix(transaction.createdAt) }}</td>
+                        <td>{{ transaction.type }}</td>
+                        <td>{{ transaction.itemDescription }}</td>
+                        <td>{{ transaction.quantity }}</td>
+                        <td *ngIf="transaction.pricePerUnit" style="padding-left: 20px;">$ {{ transaction.pricePerUnit.toLocaleString("en-US") }}</td>
+                        <td>$ {{ transaction.amount.toLocaleString("en-US") }}</td>
+                        <td>{{ transaction.quantityAvailable }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>    
+    </div>
+</main>
