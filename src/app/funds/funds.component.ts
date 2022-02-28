@@ -14,6 +14,7 @@ export class FundsComponent implements OnInit {
   amountToBuy:number = 0;
   total:number = 0;
   loaded:boolean = false;
+  loggedIn:boolean = false;
   confirmationMessage:string = "";
   constructor(private getService:GetService, private postService: PostService) { }
 
@@ -23,6 +24,19 @@ export class FundsComponent implements OnInit {
       this.selectedFund = this.funds[0];
       console.log(this.selectedFund)
       this.loaded = true;
+    })
+    let username = localStorage.getItem("username");
+    let sessionID = localStorage.getItem("sessionID");
+    let customerID = localStorage.getItem("customerID") || "";
+    this.postService.authenticate({username,sessionID}).subscribe((res:any) => {
+      console.log(res);
+      if(!res.error){
+        this.loggedIn = true;
+      } else {
+        localStorage.removeItem("sessionID");
+        localStorage.removeItem("username");
+        localStorage.removeItem("customerID");
+      }
     })
   }
 

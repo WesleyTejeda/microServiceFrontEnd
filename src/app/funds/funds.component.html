@@ -38,9 +38,10 @@
                   <p class="card-text">One Year: {{selectedFund.fiveyr}}</p>
                   <p class="card-text">Five Year: {{selectedFund.oneyr}}</p>
                   <p class="card-text">Ten Year: {{selectedFund.tenyr}}</p>
-                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#fundModal">
+                  <button *ngIf="loggedIn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#fundModal">
                     Purchase
                   </button>
+                  <button *ngIf="!loggedIn" class="btn btn-warning">Login/signup to Purchase</button>
                 </div>
               </div>
         </div>
